@@ -49,13 +49,13 @@ footer{
     text-align: center;
     font-weight: 200;
     font-style: italic;
-    padding: 20px;
+    padding: 20px;                    
 }
 
 @media (max-width:480px){
     header{
         position:fixed;
-        width:100%;
+        width:100%;                                
     }
     .header-title{
         font-size: 1.5rem;
@@ -67,4 +67,4 @@ footer{
         width:100%;
         box-shadow: none;
     }
-}
+}                   
