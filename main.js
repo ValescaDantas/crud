@@ -8,9 +8,9 @@ const closeModal = () => {
     document.getElementById('modal').classList.remove('active')
 } 
 
-const getLocalStorage = () => JSON.parse(localStorage.getItem('dbClient')) ?? []
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
 
-const setLocalStorage = (dbClient) =>   localStorage.setItem("dbClient", JSON.stringify(dbClient))
+const setLocalStorage = (dbClient) =>   localStorage.setItem("db_client", JSON.stringify(dbClient))
 
 
 //CRUD -create read update delete
@@ -52,9 +52,9 @@ const clearFields = () =>{
     
 
 const saveClient = () => {
-    debugger
+ 
         if (isValidFields()) {
-            const client= {
+            const client = {
                 nome:document.getElementById('nome').value,
                 email:document.getElementById('email').value,
                 celular:document.getElementById('celular').value,
@@ -62,16 +62,18 @@ const saveClient = () => {
             }
 
             const index = document.getElementById('nome').dataset.index
-            if (index =='new'){
-            createClient(client)
-           updateTable()
-            closeModal()
-        } else{
-            updateClient(index, client)
+              if (index ==  'new') {
+                createClient(client)
+                updateTable()
+                closeModal()
+
+        } else {
+            updateClient( client, index)
             updateTable()
            closeModal()
 
         }
+    
     }
 }
 const createRow = (client, index) => {
@@ -109,12 +111,12 @@ const fillFields = (client) => {
     document.getElementById('cidade').value = client.cidade
     document.getElementById('nome').dataset.index = client.index
 }
-
 const editClient = (index) => {
-    const client = readClient()[index]
+   const client = readClient() [index]
     client.index = index
     fillFields(client)
     openModal()
+
 }
 
 
@@ -125,6 +127,9 @@ const editDelete = (event) => {
 
         if (action == 'edit') {
             editClient(index)
+          
+    
+
         } else {
             const client = readClient()[index]
             const response = confirm(`Deseja realmente excluir o cliente ${client.nome}`)
